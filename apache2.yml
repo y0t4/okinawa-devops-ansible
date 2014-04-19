@@ -2,14 +2,14 @@
   user: devops
   sudo: yes
   tasks:
-  - name: install apache2
-    apt: pkg=apache2 state=latest
+  - name: apache2とpython-passlibのインストール
+    apt: pkg={{ item }} state=latest
+    with_items:
+    - apache2
+    - python-passlib
 
   - name: apacheの起動とデーモン化
     service: name=apache2 enabled=yes
-
-  - name: python-passlibのインストール
-    apt: pkg=python-passlib state=latest
 
   - name: site-available/defaultファイルのコピー
     copy: src=apache2/sites-available/default dest=/etc/apache2/sites-available/default owner=root group=root mode=0644
