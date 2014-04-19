@@ -23,5 +23,6 @@
   - name: htmlファイルの設置
     copy: src=html/index.html dest=/var/www/index.html owner=www-data group=www-data mode=0644
 
-  - name: apacheの再起動
-    service: name=apache2 state=restarted
+  handlers:
+    - name: apacheの再起動
+      service: name=apache2 state=restarted
