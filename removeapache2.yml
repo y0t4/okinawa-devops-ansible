@@ -1,8 +1,0 @@
-- hosts: idcf
-  user: devops
-  sudo: yes
-  tasks:
-  - name: apache2 の停止とデーモン化の取り消し
-    service: name=apache2 state=stopped enabled=no
-  - name: apache2 のアンインストール
-    apt: pkg=apache2 state=absent purge=yes

@@ -1,0 +1,5 @@
+- hosts: idcf
+  user: devops
+  sudo: yes
+  roles:
+    -  { role: remove_apache2 }
