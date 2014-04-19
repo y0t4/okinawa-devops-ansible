@@ -1,0 +1,27 @@
+- hosts: idcf
+  user: devops
+  sudo: yes
+  tasks:
+  - name: install apache2
+    apt: pkg=apache2 state=latest
+
+  - name: apacheの起動とデーモン化
+    service: name=apache2 enabled=yes
+
+  - name: python-passlibのインストール
+    apt: pkg=python-passlib state=latest
+
+  - name: site-available/defaultファイルのコピー
+    copy: src=apache2/sites-available/default dest=/etc/apache2/sites-available/default owner=root group=root mode=0644
+
+  - name: htaccessファイルのコピー
+    copy: src=html/htaccess dest=/var/www/.htaccess owner=root group=www-data mode=0640
+
+  - name: htpasswdを設置してみる
+    htpasswd: path=/var/www/.htpasswd name=ie password=devops owner=root group=www-data mode=0640
+
+  - name: htmlファイルの設置
+    copy: src=html/index.html dest=/var/www/index.html owner=www-data group=www-data mode=0644
+
+  - name: apacheの再起動
+    service: name=apache2 state=restarted

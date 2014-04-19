@@ -1,0 +1,8 @@
+- hosts: idcf
+  user: devops
+  sudo: yes
+  tasks:
+  - name: apt-get updateする
+    apt: update_cache=yes
+  - name: apt-get upgradeする
+    apt: upgrade=full

@@ -1,0 +1,6 @@
+- hosts: devops
+  user: devops
+  sudo: yes
+  tasks:
+  - name: use ping module, pingモジュールを使う
+    action: ping
