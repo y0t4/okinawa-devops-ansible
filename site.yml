@@ -3,3 +3,5 @@
   sudo: yes
   roles:
     -  { role: remove_apache2 }
+    -  { role: upgrade }
+    -  { role: setup_apache2 }
